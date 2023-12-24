@@ -65,10 +65,12 @@ cifar10 (.bin): [link here]
    #### Inside Training Page: Other Features
 
    Besides from the main features that AutoConvNet has in the training page, there are other smaller features that allow you understand your model better. Those features will be listed here:
-
       - **View Model Performance:** Monitor your model's performance in the **Model Performance** section, which consists of three pages, each displaying three graphs to illustrate your model's progress. Access any performance page during or after training. For graph customization or saving, click the "View Graph" button.
+  
+        
       - **Performance Report:** The **Performance Report** section mirrors the Model Performance in numerical values, showcasing the model's progress for each epoch. Upon completion, it displays testing accuracy. The training status appears at the bottom left, and once training concludes, it confirms the status. Download model stats from the top right.
       - **Feature Maps:** Explore feature maps, with six displayed at a time. For convolutional layers with more than six feature maps, use **Change Channels** to view others. To inspect feature maps of different convolutional layers, switch the convolutional layer via **Change Conv Layer**.
+      - **Reconfigure Model and Retrain:** If you are unhappy with your current model, you have the option to return to the model configuration page by cliking on the **Train Another Model** Button. If you want to retrain the model you have right now, you can click on the **Retrain Model** Button.
    
 
 ## Target Audience:
