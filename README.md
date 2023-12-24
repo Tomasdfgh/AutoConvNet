@@ -61,6 +61,13 @@ cifar10 (.bin): [link here]
    - **Downloading the Torch Trace of the model:** Upon completing the training process and achieving satisfactory results, you can download the trace of the model. This trace can be utilized for deploying the model in a software production environment or for testing purposes. Additionally, I've developed another software, DeepCapture Studio, which complements AutoConvNet. With DeepCapture Studio, you can upload the model's trace trained using AutoConvNet. The software captures images from your webcam and feeds them into the model, providing the output result. For comprehensive documentation on utilizing the model, refer to the link provided below.
 
       DeepCapture Studio GitHub Repository Link: [Link Here]
+
+   #### Inside Training Page: Other Features
+
+   Besides from the main features that AutoConvNet has in the training page, there are other smaller features that allow you understand your model better. Those features will be listed here:
+
+      - **View Model Performance:** You can view the performance of your model in the **Model Performance** section. There are 3 pages with each page containing three graphs demonstrating how your model is progressing. You can view any performance page during or after training. If you want to save any graphs into your local computer or expand the graph, you have the option of clicking on the view graph button.
+      - **Performance Report:**
    
 
 ## Target Audience:
