@@ -41,10 +41,14 @@ cifar10 (.bin): [link here]
 
 ## How to Use:
 1. **Model Configuration (Step One):** Seamlessly input your data, supporting various formats such as .jpg files, .csv files, and binary files (.bin). Customize your model architecture with the option to use pre-trained models. Specify the width and height to resize the images, or choose from popular CNN architectures. If you don't have a dataset available, you can explore the provided datasets above.
-![image](https://github.com/Tomasdfgh/AutoConvNet/assets/86145397/57afb29b-ec73-446e-99b8-30a27b2bf59b)
+![Step1_github](https://github.com/Tomasdfgh/AutoConvNet/assets/86145397/2ac8f39b-ed4a-46df-b600-105ecf4e7706)
 
 2. **Fill in Hyperparameters and Data Split (Step Two):** Set batch sizes, learning rates, and other essential hyperparameters. Furthermore, determine the training, validation, and testing split to configure your dataset. Once this step is done, the result will appear in the architecture bar.
+![image](https://github.com/Tomasdfgh/AutoConvNet/assets/86145397/0a7f8f00-e7ba-4405-a014-75cf9561db2e)
+
 3. **Enter Convolutional Layers (Step Three):** After completing Step 2, proceed to Step 3 to tailor your convolutional layers. Here, you have the flexibility to define the number of input and output channels, set up padding, and incorporate a pooling layer if desired immediately following the convolutional layer. This is a repeatable step, allowing you to add multiple convolutional and pooling layers to your model.
+![image](https://github.com/Tomasdfgh/AutoConvNet/assets/86145397/fc086961-5242-4e10-97ad-ee0f2d36d730)
+
 4. **Enter Fully Connected Layers (Step Four):** Following the completion of Step 2, you can proceed to Step 4 to fine-tune your fully connected layers. In this step, specify the number of input and output neurons, define the dropout rate, and choose the activation function. It's worth noting that Step 4 can be completed independently of Step 3, resulting in a model without convolutional layers. In this scenario, the image will be flattened into a single vector array and processed by the fully connected layers.
 5. **Training:**
 
