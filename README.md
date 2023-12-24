@@ -53,7 +53,11 @@ cifar10 (.bin): [link here]
    - The criterion must be L1, Smooth L1, or MSE.
    - The activation layer of the last fully connected layer must be None.
 
-   #### Inside Training Page
+   #### Inside Training Page: Main Features
+
+   Once on the training page, observe your model undergoing live training with real-time updates on its performance and properties. In this page, AutoConvNet offers a variety of features for you to use. The main ones are will be listed here:
+   - **Downloading the Training Code:** you can download the code employed for training the model. Running this code encompasses the entire process executed through the software, including steps such as loading and resizing your data, defining hyperparameters, configuring the model architecture, and initiating the training. If you wish to augment the training process with functionalities not available in the software, you have the freedom to do so by modifying this code file. The primary purpose of this feature is to provide flexibility. If there's anything the software doesn't cover or if you prefer a different approach, you can achieve it by obtaining the code responsible for constructing your model.
+   - **Downloading the State of the Model:** You have the option to download the model's weights if you wish to resume the training process or adjust certain hyperparameters while continuing with the same model. AutoConvNet facilitates this by allowing you to download the model's state as a .pth file, which can then be uploaded in Step One to resume training. It's crucial to emphasize that for successful continuation of training with a pre-existing model, the architecture of the new model must precisely match. While hyperparameters can be modified, the structure, number, and properties of convolutional layers, pooling layers, and fully connected layers must remain unchanged. AutoConvNet will provide detailed feedback if any mismatches are detected.
 
 ## Target Audience:
 
