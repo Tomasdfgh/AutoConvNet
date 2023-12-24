@@ -31,7 +31,14 @@ cifar10 (.bin): [link here]
 2. **Fill in Hyperparameters and Data Split (Step Two):** Set batch sizes, learning rates, and other essential hyperparameters. Furthermore, determine the training, validation, and testing split to configure your dataset. Once this step is done, the result will appear in the architecture bar.
 3. **Enter Convolutional Layers (Step Three):** After completing Step 2, proceed to Step 3 to tailor your convolutional layers. Here, you have the flexibility to define the number of input and output channels, set up padding, and incorporate a pooling layer if desired immediately following the convolutional layer. This is a repeatable step, allowing you to add multiple convolutional and pooling layers to your model.
 4. **Enter Fully Connected Layers (Step Four):** Following the completion of Step 2, you can proceed to Step 4 to fine-tune your fully connected layers. In this step, specify the number of input and output neurons, define the dropout rate, and choose the activation function. It's worth noting that Step 4 can be completed independently of Step 3, resulting in a model without convolutional layers. In this scenario, the image will be flattened into a single vector array and processed by the fully connected layers.
-5. 
+5. **Training:**
+#####    Commencing Training
+Once you have finished configuring your model, you may begin training by pressing on the training button. The software will warn you if something is configured incorrectly. You have the option to train a classification or regression model. The requirement to train a regression model are as follows:
+      - your data needs to be labelled with integers
+      - The criterion must be L1, Smooth L1, or MSE
+      - The activation layer of the last fully connected layer must be None
+
+#####     Inside Training Page
 
 ## Target Audience:
 
