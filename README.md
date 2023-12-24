@@ -4,10 +4,10 @@
 
 Welcome to AutoConvNet, an innovative and user-friendly tool designed to streamline the Convolutional Neural Network (CNN) model training process. Whether you're a student delving into the worlds of CNNs or a researcher seeking a swift and code-free solution, this software empoweres you to effortlessly train, evaluate, and deploy image detection models in just minutes. To get started, access the executable file (.exe) through the shared link provided, or alternatively, download all the provided codes and run the `AutoConvNetUI.py` file.
 
-### Executable Link:
+#### Executable Link:
 AutoConvNet executable file: [link here]
 
-### Dataset Links:
+#### Dataset Links:
 In order to access the different datasets available, click the links below:
 
 Face Dataset (.jpg): [link here]
@@ -18,9 +18,19 @@ mnist (.csv): [link here]
 
 cifar10 (.bin): [link here]
 
-### Framework and Libraries Used:
+#### Framework and Libraries Used:
 
-
+-   tkinter: GUI toolkit for the graphical interface.
+-   matplotlib: Plotting library for visualizations.
+-   torch and torchvision: PyTorch framework for deep learning and computer vision tasks.
+-   PIL (Python Imaging Library) and ImageTk: Image processing libraries for handling images.
+-   seaborn: Statistical data visualization library based on Matplotlib.
+-   queue, threading, time: Standard Python libraries for threading and timing operations.
+-   warnings: Python module for issuing warnings.
+-   subprocess: Module to spawn new processes, useful for executing external commands.
+-   sys: Module providing access to some variables used or maintained by the Python interpreter.
+-   csv: Module for reading and writing CSV files.
+-   functools: Module for higher-order functions and operations on callable objects.
 
 ## Key Features:
 - **Code-Free Operation:** Say goodbye to complex coding! AutoConvNet allows you to configure CNN architectures with a simple point-and-click interface, eliminating the need for manual coding during the model training process.
