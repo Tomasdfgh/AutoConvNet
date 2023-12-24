@@ -60,7 +60,7 @@ cifar10 (.bin): [link here]
    - **Downloading the State of the Model:** You have the option to download the model's weights if you wish to resume the training process or adjust certain hyperparameters while continuing with the same model. AutoConvNet facilitates this by allowing you to download the model's state as a .pth file, which can then be uploaded in Step One to resume training. It's crucial to emphasize that for successful continuation of training with a pre-existing model, the architecture of the new model must precisely match. While hyperparameters can be modified, the structure, number, and properties of convolutional layers, pooling layers, and fully connected layers must remain unchanged. AutoConvNet will provide detailed feedback if any mismatches are detected.
    - **Downloading the Torch Trace of the model:** Once you have finished training and are satisfied with the result of the model, you can download the trace of that model in order to push it into production of a software you are making, or you can use it for testing purposes as well. Furthermore, I have built another software that acts as a compliment to AutoConvNet called DeepCapture Studio. Using DeepCapture, you can upload the trace of the model that you have trained using AutoConvNet, then DeepCapture will capture images from your webcam and passes it into the model to output the result. For further documentation of the model, you can find the link below.
 
-   DeepCapture Studio GitHub Repository Link: [Link Here]
+      DeepCapture Studio GitHub Repository Link: [Link Here]
    
 
 ## Target Audience:
