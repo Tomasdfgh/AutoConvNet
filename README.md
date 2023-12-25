@@ -100,9 +100,9 @@ The same method can be used in step 3 to change or add new Fully Connected Layer
 AutoConvNet simplifies the complexities of CNN model training, putting the power of deep learning at your fingertips. Go nuts!
 
 ## Code Base Overview:
-In the following sections, I'll provide an overview of the code that constitutes AutoConvNet. As indicated in the list of libraries and frameworks used, the AutoConvNet UI is constructed using TKinter, with a focus on the ttk library for enhanced GUI elements. The backend functionalities, responsible for tasks like converting data into tensor arrays, configuring the model, and conducting training, heavily rely on torch and torchvision.
+In the upcoming sections, I'll present a comprehensive overview of the code constituting AutoConvNet. As highlighted in the list of libraries and frameworks used, the AutoConvNet UI is developed using TKinter, with a specific emphasis on the ttk library for enhanced GUI elements. The backend functionalities, responsible for tasks such as converting data into tensor arrays, configuring the model, and conducting training, heavily leverage torch and torchvision.
 
-#### the Convolutional Network class and Dynamically add on custom Conv or Dense Layers
+#### Dynamic Addition of Convolutional or Fully Connected Layers
 The very first question I had when making AutoConvNet is how could I build it to provide users the ability to add on as many conv layers or fully connected layers as they wish. The method to approach that is using the nn.ModuleList(). Take a look below for the CNN class constructor:
 ```python
 class ReplicaConvolutionalNetwork(nn.Module):
@@ -219,4 +219,6 @@ The same concept applies to add_fc_layer method. The fully connected layer is ap
             return x, None, None
         return x, convShapes, fullShapes
 ```
-The forward pass takes every convolutional and dense layer in the conv_layers and fc_layers attribute and applies it into the image. Everytime that is applied, the image is morphed into having different dimensions or different channels. I have designed this forward pass to capture that information and relay it back to AutoConvNetin the form of a hashmap within a hashmap. This is how you are able to see the shape of the image after each convolutional layer, padding, pooling layer and dense layer. If the model architecture is built incorrectly, the shape of the image is returned as None type; therefore, when AutoConvNet recieved a None type instead of a hashmap, it is able to tell that the model is configured incorrectly and display that to you. Since Torch Trace doesn't allow 
+In essence, the dynamic addition of layers and the informative forward pass contribute to AutoConvNet's adaptability and robustness in handling various model configurations. If an incorrect architecture is detected, AutoConvNet promptly notifies the user.
+
+Note: The ReplicaConvolutionalNetwork class is specifically designed for testing the model's viability and image dimensions after each layer. During training, a separate class is utilized, ensuring compatibility with TorchScript Trace.
