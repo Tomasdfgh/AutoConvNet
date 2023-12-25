@@ -87,6 +87,10 @@ The same method can be used in step 3 to change or add new Fully Connected Layer
 
 ![image](https://github.com/Tomasdfgh/AutoConvNet/assets/86145397/687b8f4c-ec9e-4edc-a67c-09e371962b5b)
 
+  #### Training Live Update Feature Demo:
+  As a demonstration, check out the GIF below to see the live update feature being in-play when the model is still being trained. While being trained, you cannot download the trace or the status of the model.
+  
+
    
 
 ## Target Audience:
