@@ -119,7 +119,7 @@ class ReplicaConvolutionalNetwork(nn.Module):
         self.fc_dropout = nn.ModuleList()
         self.conv_dropout = nn.ModuleList()
 ```
-In the Constructor, I have defined the conv_layers and fc_layers as nn.ModuleList() in order to add on any convolutional or dense layers
+In the Constructor, I have defined the conv_layers and fc_layers as nn.ModuleList() in order to add on any convolutional or dense layers.
 ```python
     def add_conv_layer(self, in_channels, out_channels, kernel_size_L, kernel_size_W, conv_stride_L, conv_stride_W, pooling_size_L, pooling_size_W, padding_size_L, padding_size_W, pool_stride_L, pool_stride_W, dropoutrate, acti_func, padding_left, padding_top, add_pooling=True, add_padding=True):
         new_conv_layer = nn.Conv2d(in_channels, out_channels, (kernel_size_L, kernel_size_W), stride = (conv_stride_L, conv_stride_W))
@@ -148,6 +148,7 @@ In the add_conv_layer method, the convolutional layer is appended onto the conv_
         self.fc_layers.append(new_fc_layer)
         self.fc_dropout.append(dropoutLayer)
 ```
+The same concept applies to add_fc_layer method. The fully connected layer is appened onto the fc_layers attribute. In the UI, everytime you submit a new Dense layer in step 4, the add_fc_layer is called in the backEnd in order to add that layer to the Model.
 ```python
     def forward(self, x):
         try:
@@ -218,5 +219,4 @@ In the add_conv_layer method, the convolutional layer is appended onto the conv_
             return x, None, None
         return x, convShapes, fullShapes
 ```
-
-
+The forward pass takes every convolutional and dense layer in the conv_layers and fc_layers attribute and applies it into the image. Everytime that is applied, the image is morphed into having different dimensions or different channels. I have designed this forward pass to capture that information and relay it back to AutoConvNetin the form of a hashmap within a hashmap. This is how you are able to see the shape of the image after each convolutional layer, padding, pooling layer and dense layer. If the model architecture is built incorrectly, the shape of the image is returned as None type; therefore, when AutoConvNet recieved a None type instead of a hashmap, it is able to tell that the model is configured incorrectly and display that to you. Since Torch Trace doesn't allow 
