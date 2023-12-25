@@ -35,6 +35,7 @@ cifar10 (.bin): [link here]
 ## Table of Content
 - [Key Features](#Key-Features)
 - [How to Use](#How-to-Use)
+  -  [Training Live Update Feature Demo](#Training-Live-Update-Feature-Demo)
 
 ## Key Features
 - **Code-Free Operation:** Say goodbye to complex coding! AutoConvNet allows you to configure CNN architectures with a simple point-and-click interface, eliminating the need for manual coding during the model training process.
@@ -91,7 +92,7 @@ The same method can be used in step 3 to change or add new Fully Connected Layer
 
 ![image](https://github.com/Tomasdfgh/AutoConvNet/assets/86145397/687b8f4c-ec9e-4edc-a67c-09e371962b5b)
 
-  #### Training Live Update Feature Demo:
+  #### Training Live Update Feature Demo
   As a demonstration, check out the GIF below to see the live update feature being in-play when the model is still being trained. While being trained, you cannot download the trace or the status of the model.
   ![ezgif com-video-to-gif-converter](https://github.com/Tomasdfgh/AutoConvNet/assets/86145397/a1c804a3-e820-4af4-ad62-bbbbaf9ad13d)
    
