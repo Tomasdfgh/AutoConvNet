@@ -54,7 +54,7 @@ In this example, I've configured two convolutional layers, and you can review th
 ![image](https://github.com/Tomasdfgh/AutoConvNet/assets/86145397/2b1fb819-ed17-4f19-87b7-03052e03ea3c)
 The same method can be used in step 3 to change or add new Fully Connected Layers
 
-   **Final Note on Step 3 and 4:** Everytime you add a new convolutional or fully connected layer, AutoConvNet updates the model accordingly and test it by taking a random image in the dataset and performing a forward pass with it. Using this, AutoConvNet can tell if the model is viable, and also get all the image input and output after each convolutional layer, pooling layer, and fully connected layer. As a result, if you input a new layer that does not fit into the pre-existing architecture, the forward pass will fail, and AutoConvNet will return a [???] for every layer.
+   **Final Note on Step 3 and 4:** Every time a new convolutional or fully connected layer is added, AutoConvNet dynamically updates the model and performs a test by using a random image from the dataset for a forward pass. This process allows AutoConvNet to assess the viability of the model. Additionally, it captures the image input and output after each convolutional layer, pooling layer, and fully connected layer. If a new layer is added that doesn't align with the existing architecture, the forward pass will fail, and AutoConvNet will display [???] for every layer in the response.
 
 6. **Training:**
 
