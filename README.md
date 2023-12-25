@@ -265,7 +265,53 @@ The following code snippet orchestrates the submission of .bin data type in Step
                 self.notification_textOne.set("Loaded " + str(round(data * 100,3)) + "% of data")
                 self.notificationOne.place(x = 30, y = 367)
 ```
-This threading approach is not exclusive to data loading; it is also implemented during the training process. The training thread communicates vital information, such as performance metrics and feature maps, back to the main GUI thread, ensuring a synchronized and informative training experience for the user.
+This threading approach is not exclusive to data loading; it is also implemented during the training process. 
+```python
+        self.training_thread = threading.Thread(target=lambda: self.backEnd.trainingLoop(self.queue, self.stop_training_event))
+        self.training_thread.daemon = True
+        self.training_thread.start()
+```
+The training thread communicates vital information, such as performance metrics and feature maps, back to the main GUI thread, ensuring a synchronized and informative training experience for the user.
+```python
+    def get_queue(self):
+        if self.queue.qsize() >= 1:
+            data_get = self.queue.get_nowait()
+            if data_get == True:
+                self.doneTraining = True
+                self.notification_textinTrain.set("Training is complete!")
+                if not self.backEnd.doingRegression:
+                    self.notification_inTrain.place(x = 965, y = 420)
+                else:
+                    self.notification_inTrain.place(x = 965, y = 630)
+                self.infrastructureVisualization(Train = True, report = self.dataTrain[11], theme_ = self.themeBool)
+                return None
+            if data_get[20][0]:
+                self.doneTraining = True
+                self.ES = True
+                self.notification_textinTrain.set("Training is complete!")
+                if not self.backEnd.doingRegression:
+                    self.notification_inTrain.place(x = 965, y = 420)
+                else:
+                    self.notification_inTrain.place(x = 965, y = 630)
+                self.infrastructureVisualization(Train = True, report = self.dataTrain[11], theme_ = self.themeBool)
+            if len(data_get[21]) == 1:
+                self.dataTrain = data_get
+                self.update_gui(self.dataTrain)
+            if len(data_get[21]) == 3:
+                if data_get[21][2]:
+                    self.notification_textinTrain.set("Training Epoch " + str(data_get[21][0]) + ": " + str(round(data_get[21][1])) + "% Done")
+                    if not self.backEnd.doingRegression:
+                        self.notification_inTrain.place(x = 965, y = 420)
+                    else:
+                        self.notification_inTrain.place(x = 965, y = 630)
+                if not data_get[21][2]:
+                    self.notification_textinTrain.set("Validating Epoch " + str(data_get[21][0]) + ": " + str(round(data_get[21][1])) + "% Done")
+                    if not self.backEnd.doingRegression:
+                        self.notification_inTrain.place(x = 965, y = 420)
+                    else:
+                        self.notification_inTrain.place(x = 965, y = 630)            
+        self.master.after(10, self.get_queue)
+```
 
 #### Code Base Overview Conclusion
 
