@@ -103,7 +103,7 @@ AutoConvNet simplifies the complexities of CNN model training, putting the power
 In the following sections, I'll provide an overview of the code that constitutes AutoConvNet. As indicated in the list of libraries and frameworks used, the AutoConvNet UI is constructed using TKinter, with a focus on the ttk library for enhanced GUI elements. The backend functionalities, responsible for tasks like converting data into tensor arrays, configuring the model, and conducting training, heavily rely on torch and torchvision.
 
 #### the Convolutional Network class and Dynamically add on custom Conv or Dense Layers
-The very first question I had when making AutoConvNet is how could I build it to provide users the ability to add on as many conv layers or fully connected layers as they wish. The method to approach that is using the nn.ModuleList(). Take a look below for the network class:
+The very first question I had when making AutoConvNet is how could I build it to provide users the ability to add on as many conv layers or fully connected layers as they wish. The method to approach that is using the nn.ModuleList(). Take a look below for the init and add_conv_layer methods:
 ```
 class ReplicaConvolutionalNetwork(nn.Module):
 
@@ -136,13 +136,16 @@ class ReplicaConvolutionalNetwork(nn.Module):
             self.padding_list.append(padding_layer)
         else:
             self.padding_list.append(None)
-
+```
+In the Constructor, I have defined the conv_layers and fc_layers as nn.ModuleList() in order to add on any convolutional or dense layers. Therefore, in the UI, everytime you submit a new conv layer in step 3, the add_conv_layer method is called in the backEnd in order to add that layer to the Model.
+```
     def add_fc_layer(self, in_features, out_features,dropoutrate, act_func=1):
         self.acts2.append(act_func)
         new_fc_layer = nn.Linear(in_features, out_features)
         dropoutLayer = nn.Dropout(dropoutrate)
         self.fc_layers.append(new_fc_layer)
         self.fc_dropout.append(dropoutLayer)
+```
 
     def forward(self, x):
         try:
