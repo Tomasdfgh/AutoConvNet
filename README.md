@@ -34,6 +34,7 @@ cifar10 (.bin): [link here]
 
 ## Table of Content
 - [Key Features](#Key-Features)
+- [How to Use](#How-to-Use)
 
 ## Key Features
 - **Code-Free Operation:** Say goodbye to complex coding! AutoConvNet allows you to configure CNN architectures with a simple point-and-click interface, eliminating the need for manual coding during the model training process.
