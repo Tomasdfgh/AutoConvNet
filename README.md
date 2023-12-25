@@ -104,7 +104,7 @@ In the following sections, I'll provide an overview of the code that constitutes
 
 #### the Convolutional Network class and Dynamically add on custom Conv or Dense Layers
 The very first question I had when making AutoConvNet is how could I build it to provide users the ability to add on as many conv layers or fully connected layers as they wish. The method to approach that is using the nn.ModuleList(). Take a look below for the CNN class constructor:
-```
+```python
 class ReplicaConvolutionalNetwork(nn.Module):
 
     def __init__(self):
@@ -120,7 +120,7 @@ class ReplicaConvolutionalNetwork(nn.Module):
         self.conv_dropout = nn.ModuleList()
 ```
 In the Constructor, I have defined the conv_layers and fc_layers as nn.ModuleList() in order to add on any convolutional or dense layers
-```
+```python
     def add_conv_layer(self, in_channels, out_channels, kernel_size_L, kernel_size_W, conv_stride_L, conv_stride_W, pooling_size_L, pooling_size_W, padding_size_L, padding_size_W, pool_stride_L, pool_stride_W, dropoutrate, acti_func, padding_left, padding_top, add_pooling=True, add_padding=True):
         new_conv_layer = nn.Conv2d(in_channels, out_channels, (kernel_size_L, kernel_size_W), stride = (conv_stride_L, conv_stride_W))
         dropoutLayer = nn.Dropout(dropoutrate)
@@ -140,7 +140,7 @@ In the Constructor, I have defined the conv_layers and fc_layers as nn.ModuleLis
             self.padding_list.append(None)
 ```
 In the add_conv_layer method, the convolutional layer is appended onto the conv_layers attribute. in the UI, everytime you submit a new conv layer in step 3, the add_conv_layer method is called in the backEnd in order to add that layer to the Model. Within the same method, you can also choose to add any padding or pooling layers right after the convolutional layer as well.
-```
+```python
     def add_fc_layer(self, in_features, out_features,dropoutrate, act_func=1):
         self.acts2.append(act_func)
         new_fc_layer = nn.Linear(in_features, out_features)
@@ -148,7 +148,7 @@ In the add_conv_layer method, the convolutional layer is appended onto the conv_
         self.fc_layers.append(new_fc_layer)
         self.fc_dropout.append(dropoutLayer)
 ```
-```
+```python
     def forward(self, x):
         try:
             #Layers key mapping: 0: Before all, 1: after activation, 2: after padding, 3: after pooling
