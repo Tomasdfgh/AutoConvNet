@@ -84,6 +84,9 @@ The same method can be used in step 3 to change or add new Fully Connected Layer
       - **Performance Report:** The **Performance Report** section mirrors the Model Performance in numerical values, showcasing the model's progress for each epoch. Upon completion, it displays testing accuracy. The training status appears at the bottom left, and once training concludes, it confirms the status. Download model stats from the top right.
       - **Feature Maps:** Explore feature maps, with six displayed at a time. For convolutional layers with more than six feature maps, use **Change Channels** to view others. To inspect feature maps of different convolutional layers, switch the convolutional layer via **Change Conv Layer**.
       - **Reconfigure Model and Retrain:** If you are unhappy with your current model, you have the option to return to the model configuration page by cliking on the **Train Another Model** Button. If you want to retrain the model you have right now, you can click on the **Retrain Model** Button.
+
+![image](https://github.com/Tomasdfgh/AutoConvNet/assets/86145397/687b8f4c-ec9e-4edc-a67c-09e371962b5b)
+
    
 
 ## Target Audience:
