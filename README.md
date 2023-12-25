@@ -51,7 +51,12 @@ cifar10 (.bin): [link here]
 In this example, I've configured two convolutional layers, and you can review their properties in the CNN Architecture tab. Currently, I'm focusing on the second convolutional layer, indicated by "2/2" in step 3, signifying the second layer out of two. The second convolutional layer is also highlighted. To make adjustments to the layers, you can navigate between them using the back and forth arrow buttons. To add a new layer, simply move to layer 3 out of 2, indicating the creation of a new, configurable layer.
 
 4. **Enter Fully Connected Layers (Step Four):** Following the completion of Step 2, you can proceed to Step 4 to fine-tune your fully connected layers. In this step, specify the number of input and output neurons, define the dropout rate, and choose the activation function. It's worth noting that Step 4 can be completed independently of Step 3, resulting in a model without convolutional layers. In this scenario, the image will be flattened into a single vector array and processed by the fully connected layers.
-5. **Training:**
+![image](https://github.com/Tomasdfgh/AutoConvNet/assets/86145397/2b1fb819-ed17-4f19-87b7-03052e03ea3c)
+The same method can be used in step 3 to change or add new Fully Connected Layers
+
+   **Final Note on Step 3 and 4:** Everytime you add a new convolutional or fully connected layer, AutoConvNet updates the model accordingly and test it by taking a random image in the dataset and performing a forward pass with it. Using this, AutoConvNet can tell if the model is viable, and also get all the image input and output after each convolutional layer, pooling layer, and fully connected layer. As a result, if you input a new layer that does not fit into the pre-existing architecture, the forward pass will fail, and AutoConvNet will return a [???] for every layer.
+
+6. **Training:**
 
    #### Commencing Training
 
