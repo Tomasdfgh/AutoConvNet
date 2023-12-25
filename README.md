@@ -56,9 +56,10 @@ In this example, I've configured two convolutional layers, and you can review th
    #### Commencing Training
 
    Once you have finished configuring your model, you may begin training by pressing the training button. The software will warn you if something is configured incorrectly. You have the option to train a classification or regression model. The requirements to train a regression model are as follows:
-   - Your data needs to be labeled with integers.
-   - The criterion must be L1, Smooth L1, or MSE.
-   - The activation layer of the last fully connected layer must be None.
+   - Your data needs to be labeled with integers
+   - The criterion must be L1, Smooth L1, or MSE
+   - The activation layer of the last fully connected layer must be None
+   - The last output neuron must take a value of 1
 
    #### Inside Training Page: Main Features
 
