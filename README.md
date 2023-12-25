@@ -47,7 +47,8 @@ cifar10 (.bin): [link here]
 ![image](https://github.com/Tomasdfgh/AutoConvNet/assets/86145397/0a7f8f00-e7ba-4405-a014-75cf9561db2e)
 
 3. **Enter Convolutional Layers (Step Three):** After completing Step 2, proceed to Step 3 to tailor your convolutional layers. Here, you have the flexibility to define the number of input and output channels, set up padding, and incorporate a pooling layer if desired immediately following the convolutional layer. This is a repeatable step, allowing you to add multiple convolutional and pooling layers to your model.
-![image](https://github.com/Tomasdfgh/AutoConvNet/assets/86145397/fc086961-5242-4e10-97ad-ee0f2d36d730)
+![image](https://github.com/Tomasdfgh/AutoConvNet/assets/86145397/5db7c573-f5bc-4672-94be-f344c677ccb6)
+In this example, I have set up 2 convolutional layers. You can see their properties in the CNN architecture tab. Currently, I am on the second convolutional layer, which is why in step 3, it display 2/2 meaning on layer 2 out of 2 possible layers; furthermore, the 2nd Convolutional layer is also highlighted. If you want to make any edits to the layers you can choose to traverse between the convolutional layers by pressing the back and forth arrow buttons. In order to add a new layer, simply move to layer 3 out of 2. This means that 
 
 4. **Enter Fully Connected Layers (Step Four):** Following the completion of Step 2, you can proceed to Step 4 to fine-tune your fully connected layers. In this step, specify the number of input and output neurons, define the dropout rate, and choose the activation function. It's worth noting that Step 4 can be completed independently of Step 3, resulting in a model without convolutional layers. In this scenario, the image will be flattened into a single vector array and processed by the fully connected layers.
 5. **Training:**
