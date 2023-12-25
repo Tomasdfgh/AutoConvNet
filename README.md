@@ -222,3 +222,55 @@ The same concept applies to add_fc_layer method. The fully connected layer is ap
 In essence, the dynamic addition of layers and the informative forward pass contribute to AutoConvNet's adaptability and robustness in handling various model configurations. If an incorrect architecture is detected, AutoConvNet promptly notifies the user.
 
 Note: The ReplicaConvolutionalNetwork class is specifically designed for testing the model's viability and image dimensions after each layer. During training, a separate class is utilized, ensuring compatibility with TorchScript Trace.
+
+#### Threading Implementation for Parallel Execution
+In AutoConvNet, threading is a pivotal component that guarantees seamless and non-blocking execution, particularly when tackling tasks that may potentially disrupt the main GUI thread. The implementation leverages Python's threading module to introduce parallelism, significantly enhancing the responsiveness and overall performance of the application.
+
+Threading is systematically integrated into nearly every button within the program, ensuring a responsive user interface by preventing lag during the processing of button functionalities. To facilitate communication with the main GUI thread, a queue is employed to seamlessly pass information back and forth. Upon completing its functionalities, the thread signals the main thread by placing a message in the queue, indicating the completion of its tasks. Examples of threaded operations triggered by user actions, such as the submission of step 1, can be observed below.
+```python
+        if self.dataType == ".bin":
+            self.loading_thread = threading.Thread(target = lambda: self.backEnd.load_data_binary(self.loading_queue, datalink, height, width))
+            self.loading_thread.daemon = True
+            self.loading_thread.start()
+            self.notification_textOne.set("Loading Binary Data")
+            self.notificationOne.place(x = 30, y = 367)
+            self.get_training_queue()
+```
+The following code snippet orchestrates the submission of .bin data type in Step 1 of AutoConvNet. A dedicated loading thread is instantiated, equipped with a queue parameter that facilitates communication with the main thread, conveying progress updates.
+```python
+        if self.dataType == ".bin":
+            if data == "Step1":
+                self.notification_textOne.set("Binary file matches compatibility")
+                self.notificationOne.place(x = 30, y = 367)
+            
+            if data == "Fail1":
+                self.notification_textOne.set("Failed to load File: Incorrect File Type")
+                self.notificationOne.place(x = 30, y = 367)
+                self.step1 = False
+                return None
+            
+            if data == "Fail2":
+                self.notification_textOne.set("Failed to load File: Inconsistence data dimensions")
+                self.notificationOne.place(x = 30, y = 367)
+                self.step1 = False
+                return None
+            
+            if data == "ImNotSquare":
+                self.notification_textOne.set("Failed to load File: Images not square")
+                self.notificationOne.place(x = 30, y = 367)
+                self.step1 = False
+                return None
+            
+            if type(data) == float:
+                self.notification_textOne.set("Loaded " + str(round(data * 100,3)) + "% of data")
+                self.notificationOne.place(x = 30, y = 367)
+```
+This threading approach is not exclusive to data loading; it is also implemented during the training process. The training thread communicates vital information, such as performance metrics and feature maps, back to the main GUI thread, ensuring a synchronized and informative training experience for the user.
+
+#### Code Base Overview Conclusion
+
+In this detailed overview, we've delved into the core components of AutoConvNet, shedding light on its architecture, threading implementation, and core functionalities. The use of threading is a crucial aspect of the program, ensuring smooth and non-blocking execution during various tasks. Each step of the training process and data loading is orchestrated through dedicated threads, enhancing responsiveness.
+
+The code snippets provided offer a glimpse into the inner workings of the application, showcasing the utilization of Python's threading module, Tkinter for the GUI, and PyTorch for the backend neural network operations. For a deeper understanding and exploration, feel free to examine the full codebase, where comprehensive comments and documentation are available.
+
+For more information and insights, dive into the code repository and explore the intricacies of AutoConvNet firsthand. The repository serves as a valuable resource for developers, students, and researchers keen on understanding the implementation details and potentially contributing to the project's evolution.
