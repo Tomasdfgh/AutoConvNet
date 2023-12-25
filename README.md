@@ -102,3 +102,116 @@ AutoConvNet simplifies the complexities of CNN model training, putting the power
 ## Code Base Overview:
 In the following sections, I'll provide an overview of the code that constitutes AutoConvNet. As indicated in the list of libraries and frameworks used, the AutoConvNet UI is constructed using TKinter, with a focus on the ttk library for enhanced GUI elements. The backend functionalities, responsible for tasks like converting data into tensor arrays, configuring the model, and conducting training, heavily rely on torch and torchvision.
 
+#### the Convolutional Network class and Dynamically add on custom Conv or Dense Layers
+The very first question I had when making AutoConvNet is how could I build it to provide users the ability to add on as many conv layers or fully connected layers as they wish. The method to approach that is using the nn.ModuleList(). Take a look below for the network class:
+```
+class ReplicaConvolutionalNetwork(nn.Module):
+
+    def __init__(self):
+        super(ReplicaConvolutionalNetwork, self).__init__()
+        self.conv_layers = nn.ModuleList()
+        self.fc_layers = nn.ModuleList()  # Store the fully connected layers
+        self.pool_layers = []  # Store the pooling layers
+        self.padding_list = []
+        self.acts = []
+        self.acts2 = []
+        self.feature_maps = {}
+        self.fc_dropout = nn.ModuleList()
+        self.conv_dropout = nn.ModuleList()
+
+    def add_conv_layer(self, in_channels, out_channels, kernel_size_L, kernel_size_W, conv_stride_L, conv_stride_W, pooling_size_L, pooling_size_W, padding_size_L, padding_size_W, pool_stride_L, pool_stride_W, dropoutrate, acti_func, padding_left, padding_top, add_pooling=True, add_padding=True):
+        new_conv_layer = nn.Conv2d(in_channels, out_channels, (kernel_size_L, kernel_size_W), stride = (conv_stride_L, conv_stride_W))
+        dropoutLayer = nn.Dropout(dropoutrate)
+        self.conv_layers.append(new_conv_layer)
+        self.conv_dropout.append(dropoutLayer)
+        self.acts.append(acti_func)
+        if add_pooling:
+            pool_layer = nn.MaxPool2d(kernel_size = (pooling_size_L,pooling_size_W), stride = (pool_stride_L,pool_stride_W))
+            self.pool_layers.append(pool_layer)
+        else:
+            self.pool_layers.append(None)
+
+        if add_padding:
+            padding_layer = nn.ZeroPad2d((padding_left, padding_size_L, padding_top, padding_size_W)) # (left, right, top, bottom)
+            self.padding_list.append(padding_layer)
+        else:
+            self.padding_list.append(None)
+
+    def add_fc_layer(self, in_features, out_features,dropoutrate, act_func=1):
+        self.acts2.append(act_func)
+        new_fc_layer = nn.Linear(in_features, out_features)
+        dropoutLayer = nn.Dropout(dropoutrate)
+        self.fc_layers.append(new_fc_layer)
+        self.fc_dropout.append(dropoutLayer)
+
+    def forward(self, x):
+        try:
+            #Layers key mapping: 0: Before all, 1: after activation, 2: after padding, 3: after pooling
+            convShapes = {}
+            count = 0
+            for conv_layer, pool_layer, padding, act, dropout in zip(self.conv_layers, self.pool_layers, self.padding_list, self.acts, self.conv_dropout):
+                convlayers = {}
+                convlayers[0] = [x[0].shape[0],x[0].shape[1],x[0].shape[2]]
+                x = conv_layer(x)
+                # 0: None, 1: relu, 2: sigmoids, 3: tanh, 4: lrelu, 5: prelu, 6: elu
+                if act == 0:
+                    x = dropout(x)
+                elif act == 1:
+                    x = dropout(F.relu(x))
+                elif act == 2:
+                    x = dropout(torch.sigmoid(x))
+                elif act == 3:
+                    x = dropout(torch.tanh(x))
+                elif act == 4:
+                    x = dropout(F.leaky_relu(x, negative_slope=0.2))
+                elif act == 5:
+                    x = dropout(F.prelu(x))
+                elif act == 6:
+                    x = dropout(F.elu(x))
+                elif act == 7:
+                    x = dropout(F.softmax(x, dim = 1))
+                convlayers[1] = [x[0].shape[0],x[0].shape[1],x[0].shape[2]]
+                if padding:
+                    x = padding(x)
+                convlayers[2] = [x[0].shape[0],x[0].shape[1],x[0].shape[2]]
+                if pool_layer:
+                    x = pool_layer(x)
+                convlayers[3] = [x[0].shape[0],x[0].shape[1],x[0].shape[2]]
+                count += 1
+                convShapes[count] = convlayers
+        except:
+            return x, None, None
+
+        try:
+            #Layers key mapping: 0: before all, 1: after all
+            fullShapes = {}
+            count2 = 0
+            x = x.view(x.size(0), -1)
+            for layer, act, dropout in zip(self.fc_layers, self.acts2, self.fc_dropout):
+                fullLayer = {}
+                count2 += 1
+                fullLayer[0] = x[0].shape[0]
+                if act == 0:
+                    x = dropout(layer(x))
+                elif act == 1:
+                    x = dropout(F.relu(layer(x)))
+                elif act == 2:
+                    x = dropout(torch.sigmoid(layer(x)))
+                elif act == 3:
+                    x = dropout(torch.tanh(layer(x)))
+                elif act == 4:
+                    x = dropout(F.leaky_relu(layer(x), negative_slope=0.2))
+                elif act == 5:
+                    x = dropout(F.prelu(layer(x))) 
+                elif act == 6:
+                    x = dropout(F.elu(layer(x)))
+                elif act == 7:
+                    x = dropout(F.softmax(layer(x), dim = 1))
+                fullLayer[1] = x[0].shape[0]
+                fullShapes[count2] = fullLayer
+        except:
+            return x, None, None
+        return x, convShapes, fullShapes
+```
+
+
