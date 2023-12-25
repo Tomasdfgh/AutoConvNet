@@ -90,9 +90,6 @@ The same method can be used in step 3 to change or add new Fully Connected Layer
   #### Training Live Update Feature Demo:
   As a demonstration, check out the GIF below to see the live update feature being in-play when the model is still being trained. While being trained, you cannot download the trace or the status of the model.
   ![ezgif com-video-to-gif-converter](https://github.com/Tomasdfgh/AutoConvNet/assets/86145397/a1c804a3-e820-4af4-ad62-bbbbaf9ad13d)
-
-
-
    
 
 ## Target Audience:
@@ -101,4 +98,7 @@ The same method can be used in step 3 to change or add new Fully Connected Layer
 - **Researchers:** Accelerate your research by training CNN models in minutes and gain insights into model behavior through dynamic feature maps.
 
 AutoConvNet simplifies the complexities of CNN model training, putting the power of deep learning at your fingertips. Go nuts!
+
+## Code Base Overview:
+In the following sections, I'll provide an overview of the code that constitutes AutoConvNet. As indicated in the list of libraries and frameworks used, the AutoConvNet UI is constructed using TKinter, with a focus on the ttk library for enhanced GUI elements. The backend functionalities, responsible for tasks like converting data into tensor arrays, configuring the model, and conducting training, heavily rely on torch and torchvision.
 
