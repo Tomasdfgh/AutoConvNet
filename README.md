@@ -32,14 +32,17 @@ cifar10 (.bin): [link here]
 -   csv: Module for reading and writing CSV files.
 -   functools: Module for higher-order functions and operations on callable objects.
 
-## Key Features:
+## Table of Content
+- [Key Features](#Key-Features)
+
+## Key Features
 - **Code-Free Operation:** Say goodbye to complex coding! AutoConvNet allows you to configure CNN architectures with a simple point-and-click interface, eliminating the need for manual coding during the model training process.
 - **Real-Time Training Updates:** Witness the model's training process unfold with the software's live update feature. Track key metrics, assess convergence, and make informed decisions throughout the training journey.
 - **Versatile Model Performance Metrics:** Evaluate your model with precision using a variety of performance metrics. Dive into accuracy, losses, errors, True and False positives and negatives, as well as Micro and Macro F1, Precision, and Recall.
 - **Dynamic Feature Maps:** Explore the inner workings of your model with dynamic feature maps. Visualize extracted patterns and features from images, gaining insights into how your model interprets input data.
 - **Download Model State and Trace:** Capture the state of your model by downloading its weights as a .pth file. Additionally, download the trace of th emodel as a .pt file. These files provide flexibility-continue training, put the model into production, or explore the inner workings of the trained model.
 
-## How to Use:
+## How to Use
 1. **Model Configuration (Step One):** Seamlessly input your data, supporting various formats such as .jpg files, .csv files, and binary files (.bin). Customize your model architecture with the option to use pre-trained models. Specify the width and height to resize the images, or choose from popular CNN architectures. If you don't have a dataset available, you can explore the provided datasets above.
 ![Step1_github](https://github.com/Tomasdfgh/AutoConvNet/assets/86145397/2ac8f39b-ed4a-46df-b600-105ecf4e7706)
 
@@ -92,14 +95,14 @@ The same method can be used in step 3 to change or add new Fully Connected Layer
   ![ezgif com-video-to-gif-converter](https://github.com/Tomasdfgh/AutoConvNet/assets/86145397/a1c804a3-e820-4af4-ad62-bbbbaf9ad13d)
    
 
-## Target Audience:
+## Target Audience
 
 - **Students:** Perfect for those learning intricacies of CNN model training, offering a code-free entry into the world of deep learning.
 - **Researchers:** Accelerate your research by training CNN models in minutes and gain insights into model behavior through dynamic feature maps.
 
 AutoConvNet simplifies the complexities of CNN model training, putting the power of deep learning at your fingertips. Go nuts!
 
-## Code Base Overview:
+## Code Base Overview
 In the upcoming sections, I'll present a comprehensive overview of the code constituting AutoConvNet. As highlighted in the list of libraries and frameworks used, the AutoConvNet UI is developed using TKinter, with a specific emphasis on the ttk library for enhanced GUI elements. The backend functionalities, responsible for tasks such as converting data into tensor arrays, configuring the model, and conducting training, heavily leverage torch and torchvision.
 
 #### Dynamic Addition of Convolutional or Fully Connected Layers
