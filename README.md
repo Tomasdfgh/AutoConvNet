@@ -16,7 +16,7 @@ Dog Type Dataset (.jpg): [[Dataset Link]](https://drive.google.com/drive/folders
 
 mnist (.csv): [[Dataset Link]](https://drive.google.com/file/d/1kuSAg_dntbTOQd5sbD-TSRK2nYK6gzyH/view?usp=sharing)
 
-mnist reverted color (.jpg): [link here]
+mnist reverted color (.jpg): [[Dataset Link]](https://drive.google.com/drive/folders/1vGp5HwEV9XU42OaCqHWq0VDienYgG4EQ?usp=sharing)
 
 cifar10 (.bin): [[Dataset Link]](https://drive.google.com/drive/folders/1EPMa4AsQJAfHktinlcoBHZqTrTsLPQ4Z?usp=sharing)
 
