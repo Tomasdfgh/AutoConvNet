@@ -10,11 +10,13 @@ AutoConvNet executable file: [[Executable Link]](https://drive.google.com/file/d
 #### Dataset Links:
 In order to access the different datasets available, click the links below:
 
-Face Dataset (.jpg): [link here]
+Human Portraits (UTK-Face)(.jpg): [[Dataset Link]](https://drive.google.com/drive/folders/1Ku-908zU-dIwKoKugHp4dGKY5hBYJq0m?usp=sharing)
 
-Dog Dataset (.jpg): [link here]
+Dog Type Dataset (.jpg): [[Dataset Link]](https://drive.google.com/drive/folders/1B-XzjE5l0OiUECOJnuFMhO0RTWrxgtwd?usp=sharing)
 
 mnist (.csv): [link here]
+
+mnist reverted color (.jpg): [link here]
 
 cifar10 (.bin): [link here]
 
