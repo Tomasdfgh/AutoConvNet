@@ -14,11 +14,11 @@ Human Portraits (UTK-Face)(.jpg): [[Dataset Link]](https://drive.google.com/driv
 
 Dog Type Dataset (.jpg): [[Dataset Link]](https://drive.google.com/drive/folders/1B-XzjE5l0OiUECOJnuFMhO0RTWrxgtwd?usp=sharing)
 
-mnist (.csv): [link here]
+mnist (.csv): [[Dataset Link]](https://drive.google.com/file/d/1kuSAg_dntbTOQd5sbD-TSRK2nYK6gzyH/view?usp=sharing)
 
 mnist reverted color (.jpg): [link here]
 
-cifar10 (.bin): [link here]
+cifar10 (.bin): [[Dataset Link]](https://drive.google.com/drive/folders/1EPMa4AsQJAfHktinlcoBHZqTrTsLPQ4Z?usp=sharing)
 
 #### Framework and Libraries Used:
 
