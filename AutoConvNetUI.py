@@ -2581,6 +2581,10 @@ if __name__ == "__main__":
 
     def update_loading(self,data):
         if self.dataType == ".jpg":
+            if data == "Inconsistence Channels":
+                self.notification_textOne.set("Error: Image Channels Inconsistency")
+                self.notificationOne.place(x = 30, y = 367)
+
             try:
                 self.notification_textOne.set("Loaded " + str(round(float(data / len(self.backEnd.folders)) * 100,2)) + "% of data")            
                 self.notificationOne.place(x=30, y=367)

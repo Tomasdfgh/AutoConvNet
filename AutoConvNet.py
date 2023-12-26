@@ -23,8 +23,6 @@ import torch.nn.functional as F
 import pickle
 import csv
 
-import numpy as np
-
 
 class ConvertData(Dataset):
     def __init__(self,array,transform = None):
@@ -290,6 +288,7 @@ class BackEnd:
     def check_gpu(self):
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+
     def calculate_quality(self):
         if len(self.dataPerLabel) > 0:
             # Average Data per Label, Ratio of smallest label / largest label, gini
@@ -331,7 +330,7 @@ class BackEnd:
         #               1                   2                   5              6                    3                       4                  9                       10                      11                  12                       13              14                  18              15                 16          17         7
         csv_ = [["","Training Loss", "Training Accuracies","Training MSE", "Training MAE", "Validation Accuracies", "Validation Loss", "Micro True Positive", "Micro True Negative", "Micro False Postive", "Micro False Negative", "Training Time", "Micro Precision","Macro Precision", "Micro Recall", "Macro Recall", "Micro F1", "Macro F1"]]
         for i in range(1, len(self.report)):
-            temp_ = ["Epoch " + str(i), self.report[i][1], self.report[i][2], self.report[i][5], self.report[i][6], self.report[i][3], self.report[i][4], self.report[i][9], self.report[i][10], self.report[i][11], self.report[i][12], self.report[i][13], self.report[i][14], self.report[i][18], self.report[i][15], self.report[i][16], self.report[i][17], self.report[i][7]]
+            temp_ = ["Epoch " + str(i), self.report[i][1], self.report[i][2], self.report[i][5], self.report[i][6], self.report[i][3], self.report[i][4], self.report[i][9].item(), self.report[i][10].item(), self.report[i][11].item(), self.report[i][12].item(), self.report[i][13], self.report[i][14].item(), self.report[i][18].item(), self.report[i][15].item(), self.report[i][16].item(), self.report[i][17].item(), self.report[i][7].item()]
             csv_.append(temp_)
         file_path = filedialog.asksaveasfilename(defaultextension=".csv", filetypes=[("CSV files", "*.csv")])
         if file_path:
@@ -387,6 +386,8 @@ class BackEnd:
         self.height = height
         self.width = width
         self.dataPerLabel = {}
+        self.channel_3 = False
+        self.channel_1 = False
         label = 0
 
         #Check to see if dataset is compatible for regression training
@@ -413,6 +414,13 @@ class BackEnd:
                         continue
                     image = Image.open(filepath)
                     image = image.resize((self.width, self.height))
+                    if len(image.getbands()) == 3 or len(image.getbands()) == 4:
+                        self.channel_3 = True
+                    if len(image.getbands()) == 1:
+                        self.channel_1 = True
+                    if self.channel_1 and self.channel_3:
+                        queue.put("Inconsistence Channels")
+                        return None
                     if self.regression_possibility:
                         self.dataset_regression.append((image, folder_name))
                     self.dataset.append((image,label))
@@ -570,14 +578,9 @@ class BackEnd:
                             queue.put(current_/ row_count)
             
             if queue is not None:
-                test = r"C:\Users\tomng\Desktop\test_0.PNG"
-                print(self.dataset[0][0])
-                self.dataset[0][0].show()
-                self.dataset[0][0].save(test)
                 queue.put("Finished")
 
         except Exception as e:
-            print(f"Failed with error: {e}")
             if queue is not None:
                 queue.put("Failed")
             return None
@@ -589,7 +592,6 @@ class BackEnd:
         if Norm == True and self.imDim[0] == 3:
             transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,0.5,0.5),(0.5,0.5,0.5))])
         else:
-            print("Not being normalized")
             transform = transforms.Compose([transforms.ToTensor()])
         ImageSet = ConvertData(self.dataset, transform = transform)
         train_set, validation_set, test_set = torch.utils.data.random_split(ImageSet, [int((trainingSplit/100) * len(self.dataset)),int((validationSplit/100) * len(self.dataset)),len(self.dataset) - int((trainingSplit/100) * len(self.dataset)) - int((validationSplit/100) * len(self.dataset))])
@@ -651,11 +653,6 @@ class BackEnd:
         optimizer = optimizer_dict[self.optimizer]
         data_iter = iter(self.train_loader)
         images, labels = next(data_iter)
-        extracted = images[0,0,:,:]
-        extracted = extracted.numpy()
-        np.set_printoptions(threshold=np.inf)
-        print(extracted)
-        print(extracted.shape)
         output, self.convShapes, self.fullShapes = testModel(images)
 
         if loadPreTrained:
